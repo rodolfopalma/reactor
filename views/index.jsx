@@ -1,3 +1,4 @@
+import "../assets/css/bootstrap.min.css";
 import "../assets/styl/main.styl";
 
 import React from "react";

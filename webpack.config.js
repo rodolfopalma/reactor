@@ -26,6 +26,14 @@ const common = {
 				loader: "style-loader!css-loader!stylus-loader"
 			},
 			{
+				test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+				loader: "file-loader"
+			},
+			{
+				test: /\.css$/,
+				loader: "style-loader!css-loader"
+			},
+			{
 				test: /\.jsx?$/,
 				loaders: ["babel?cacheDirectory"],
 				include: PATHS.views
