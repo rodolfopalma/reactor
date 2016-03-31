@@ -5,8 +5,8 @@ const _ = require("lodash");
 const TARGET = process.env.npm_lifecycle_event;
 
 const PATHS = {
-	build: path.join(__dirname, "build"),
-	views: path.join(__dirname, "views")
+	build: path.join(__dirname, "app/build"),
+	views: path.join(__dirname, "app/views")
 };
 const common = {
 	entry: {
