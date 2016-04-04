@@ -4,8 +4,7 @@
   "description": "Facebook Chile Hackathon Boilerplate",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack -w"
   },
   "repository": "https://gitlab.com/rpalmaotero/fb-hackathon.git",
   "author": "Rodolfo Palma Otero",
