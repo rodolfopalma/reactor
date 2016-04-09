@@ -1,7 +1,7 @@
 #!/usr/local/bin python3
 # -*- encoding: utf-8 -*-
 
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, send_file
 from json import loads
 from app.smp import StableMatch
 
@@ -15,6 +15,10 @@ app = Flask(
 )
 app.config.from_object(__name__)
 
+
+@app.route('/')
+def index():
+    return send_file('index.html')
 
 @app.route('/solve', methods=['GET'])
 def black_box():
