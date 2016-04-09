@@ -10,7 +10,7 @@ const PATHS = {
 };
 const common = {
 	entry: {
-		app: PATHS.views
+		app: path.join(PATHS.views, "/App.jsx")
 	},
 	resolve: {
 		extensions: ["", ".js", ".jsx"]
