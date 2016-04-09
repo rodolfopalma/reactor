@@ -1,6 +1,10 @@
 import React from "react";
+import { History } from "react-router";
 
 export default class App extends React.Component {
+    handleBegin() {
+        History.pushState(null, "begin")
+    }
 	render() {
         return (
             <div className="container">
