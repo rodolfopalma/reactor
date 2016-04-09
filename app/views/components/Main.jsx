@@ -10,7 +10,8 @@ export default class App extends React.Component {
                 <NavBar />
                 { this.props.children }
                 <Footer />
-				<FacebookButton fb={FB} />
+				<FacebookButton fb={FB} />,
+				document.getElementById('facebook-login')
             </div>
        );
 	}
