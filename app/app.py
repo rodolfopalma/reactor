@@ -20,9 +20,9 @@ def black_box():
     pickers = loads(request.args['pickers'])
     choices = loads(request.args['choices'])
 
-    problem = Stable
+    problem = StableMatch(pickers, choices)
+    result = problem.solve()
 
-    result = dict()
     return jsonify(**result)
 
 if __name__ == '__main__':
