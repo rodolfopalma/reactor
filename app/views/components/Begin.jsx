@@ -38,7 +38,7 @@ var Begin = React.createClass({
         }
         return (
             <div className="container">
-                <form onSubmit={this.handleSubmit}>
+                <form>
                     <h2>Tell us who are driving...</h2>
                     {driversFormGroups}
                     <button className="btn btn-default" onClick={this.handleAddDriverFormGroup}>Add driver</button>
@@ -46,7 +46,7 @@ var Begin = React.createClass({
                     {passengersFormGroups}
                     <button className="btn btn-default" onClick={this.handleAddPassengerFormGroup}>Add passenger</button>
                     <div className="form-group">
-                        <input id="beginSubmitButton" className="btn btn-primary btn-default" type="submit" value="Next" />
+                        <input onClick={this.handleSubmit} id="beginSubmitButton" className="btn btn-primary btn-default" type="submit" value="Next" />
                     </div>
                 </form>
             </div>
