@@ -3,6 +3,6 @@ import "../assets/styl/main.styl";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App.jsx";
+import Home from "./components/Home.jsx";
 
-ReactDOM.render(<App />, document.getElementById("app"))
+ReactDOM.render(<Home />, document.getElementById("app"))
