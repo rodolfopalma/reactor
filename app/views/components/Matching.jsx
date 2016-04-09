@@ -4,11 +4,10 @@ var Matching = React.createClass({
 
   render(){
         return(
-          <div>
-
-          </div>
-
-    );
+            <div className="container">
+                <h1> Matching... </h1>
+            </div>
+        );
   }
 
 });

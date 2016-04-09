@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from "./NavBar.jsx";
 import Footer from "./Footer.jsx";
-import FacebookButton from './FacebookButton';
 
 export default class App extends React.Component {
 	render() {
@@ -10,8 +9,6 @@ export default class App extends React.Component {
                 <NavBar />
                 { this.props.children }
                 <Footer />
-				<FacebookButton fb={FB} />,
-				document.getElementById('facebook-login')
             </div>
        );
 	}
