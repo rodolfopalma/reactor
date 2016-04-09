@@ -83,6 +83,5 @@ if __name__ == '__main__':
                    'Jorge': ['Abara', 'Litros']}
     dic_choices = {'Litros': ['Palma', 'Jorge', ' Thomas', 'Polo', 'Seto', 'Jorge', 'Fernando'],
                    'Abara': ['Jorge', 'Thomas', 'Ivan', 'Seto', 'Fernando', 'Palma', 'Polo']}
-    dic = {'pickers': dic_pickers, 'choices': dic_choices}
     problem = StableMatch(dic_pickers=dic_pickers, dic_choices=dic_choices)
     print(problem.solve())
