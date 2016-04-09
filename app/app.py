@@ -20,9 +20,7 @@ def black_box():
     pickers = loads(request.args['pickers'])
     choices = loads(request.args['choices'])
 
-    """
-    Aca va la caja negra
-    """
+    problem = Stable
 
     result = dict()
     return jsonify(**result)
