@@ -1,4 +1,4 @@
-import React from "react";    
+import React from "react";
 import { History } from "react-router";
 
 var App = React.createClass({
@@ -22,7 +22,9 @@ var App = React.createClass({
 
                 </div>
                     <div className="col-md-6">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ante et massa consequat convallis. Nulla ac quam porttitor, vehicula mi at, tempor eros. Vestibulum euismod nisl et blandit semper. Nulla quis nulla risus. Maecenas fringilla suscipit ullamcorper. Ut ac varius tellus, venenatis dictum ante. Duis id lacinia tortor, maximus tristique sapien. Duis tortor velit, ornare vel blandit ac, condimentum ut urna. Cras malesuada quis purus non sollicitudin. Morbi mollis aliquet mauris, et elementum purus rhoncus in. Integer fermentum orci diam, at malesuada ligula facilisis non. Proin molestie, erat non eleifend molestie, justo ipsum vulputate lacus, vel lobortis ligula nunc quis magna. Mauris non dolor vel elit fermentum fringilla. Etiam dictum tristique fermentum. Maecenas et scelerisque eros, sed malesuada turpis. Nunc vehicula pretium auctor.
+                  Imagine you are having a trip with a group of friends in more than one car. A couple of people are driving and everyone has to choose the car that they are travelling.<br />
+                  Like every group of people there are some that get along better and would like to travel with them. <br />
+                  This page takes in consideration the preferences of everyone and matches passengers with drivers in the best possible way, allowing you to have a pleasurable trip.
                     </div>
                 </div>
 
