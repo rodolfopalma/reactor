@@ -4,8 +4,8 @@ var PassengersFormGroup = React.createClass({
     render() {
         return (
             <div className="form-group">
-                <label for="passengerInput">Passenger #1</label>
-                <input type="text" className="form-control" id="passengerInput" placeholder="John Doe" />
+                <label htmlFor="passengerInput{ this.props.n }">Passenger #{ this.props.n + 1 }</label>
+                <input type="text" className="form-control" id="passengerInput{ this.props.n }" placeholder="John Doe" />
             </div>
        )
     }
