@@ -6,7 +6,8 @@ client_secret = '301092d0952e4b744b7c1e67d542a967'
 
 authorization_base_url = 'https://www.facebook.com/dialog/oauth'
 toke_url = 'https://graph.facebook.com/oauth/access_token'
-redirect_uri = 'https://8a0c4525.ngrok.io'
+redirect_uri = 'https://localhost/'
+
 
 facebook = OAuth2Session(client_id, redirect_uri=redirect_uri)
 facebook = facebook_compliance_fix(facebook)
