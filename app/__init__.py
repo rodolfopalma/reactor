@@ -1,8 +1,9 @@
 #!/usr/local/bin python3
 # -*- encoding: utf-8 -*-
-import smp
+
 from flask import Flask, request, render_template, jsonify
 from json import loads
+from app.smp import StableMatch
 
 DEBUG = True
 SECRET_KEY = 'this is a secret'
@@ -15,7 +16,7 @@ app = Flask(
 app.config.from_object(__name__)
 
 
-@app.route('/solve', METHODS=['GET'])
+@app.route('/solve', methods=['GET'])
 def black_box():
     pickers = loads(request.args['pickers'])
     choices = loads(request.args['choices'])
