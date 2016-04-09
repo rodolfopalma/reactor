@@ -1,10 +1,12 @@
 import React from "react";
 import { History } from "react-router";
 
-export default class App extends React.Component {
+var App = React.createClass({
+    mixins: [ History ],
     handleBegin() {
-        History.pushState(null, "begin")
-    }
+        this.history.pushState(null, "begin")
+    },
+
 	render() {
         return (
             <div className="container">
@@ -26,11 +28,13 @@ export default class App extends React.Component {
 
                 <div className="row">
                     <div className="col-md-12" id="landingButton">
-                        <button type="button" className="btn btn-primary btn-lg">Begin</button>
+                        <button onClick={this.handleBegin} type="button" className="btn btn-primary btn-lg">Begin</button>
                     </div>
                 </div>
 
             </div>
        );
 	}
-}
+});
+
+module.exports = App;
