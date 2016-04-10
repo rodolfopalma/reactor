@@ -14,6 +14,7 @@ module.exports = (
         <Route path="choose-people" component={Begin} />
         <Route path="matching" component={Matching} />
         <Route path="results" component={Results} />
+        <Route path="test" component={Results2} />
         <IndexRoute component={Home} />
     </Route>
 )
