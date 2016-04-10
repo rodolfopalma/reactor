@@ -1,64 +1,97 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { History } from "react-router";
+import axios from "axios";
+
 import TextInput from "./TextInput.jsx";
 
+var Matching = React.createClass({
+	
+	handleSubmit(ev) {
+		var that = this;
+        var inputs = this.refs.form.querySelectorAll("input[type='number']");
+		var requestObject = {
+			passengers: {},
+			drivers: {},
+		}
+		var currentInput;
+		var ratingObject;
+		console.log("hola");
+		for (var i = 0; i < inputs.length; i++) {
+			currentInput = inputs[i];
+			ratingObject = {
+				username: currentInput.dataset.childName,
+				rating: currentInput.value
+			};
+			console.log(currentInput.dataset);
+			if (currentInput.dataset.parentName in requestObject[currentInput.dataset.parentType]) {
+				requestObject[currentInput.dataset.parentType][currentInput.dataset.parentName].push(ratingObject);
+			} else {
+				requestObject[currentInput.dataset.parentType][currentInput.dataset.parentName] = [ ratingObject ];
+			}
+		}
+		axios.get("/solve", {
+			params: {
+				data: JSON.stringify(requestObject)
+			}
+		}).then(function(response) {
+			window.PAC.serverResponse = response;
+			that.history.pushState(null, "results");
+		});
+		ev.preventDefault();
+	},
+	render() {
+		var drivers = window.PAC.roles.drivers;
+		var passengers = window.PAC.roles.passengers;
 
-var Matching  = React.createClass({
+		var driversFormGroups = [];
+		for (var i = 0; i < drivers.length; i++) {
+			var subFormGroups = [];
+			for (var j = 0; j < passengers.length; j++) {
+				subFormGroups.push(
+					<div className="form-group">
+						<label> { passengers[j].name } </label>
+						<input required type="number" data-parent-type="drivers" data-parent-name={ drivers[i].name } data-child-name={ passengers[j].name } />
+					</div>
+				);
+			}
+			driversFormGroups.push(
+				<div className="driverFormGroup">
+					<h3> { drivers[i].name } </h3>
+					{ subFormGroups }
+				</div>
+			);
+		}
+		var passengersFormGroups = [];
+		for (var i = 0; i < passengers.length; i++) {
+			subFormGroups = [];
+			for (var j = 0; j < drivers.length; j++) {
+				subFormGroups.push(
+					<div className="form-group">
+						<label> { drivers[j].name } </label>
+						<input required type="number" data-parent-type="passengers" data-parent-name={ passengers[i].name } data-child-name={ drivers[j].name } />
+					</div>
+				);
+			}
+			passengersFormGroups.push(
+				<div className="passengerFormGroup">
+					<h3> { passengers[i].name } </h3>
+					{ subFormGroups }
+				</div>
+			);
+		}
+		return (
+			<div className="container" id="matchingContainer">
+				<form ref="form" onSubmit={ this.handleSubmit }>
+					<h2> Drivers' preferences </h2>
+					{ driversFormGroups}
+					<h2> Passengers' preferences </h2>
+					{ passengersFormGroups}
+					<input type="submit" className="btn btn-default btn-lg" value="Submit" />
+				</form>
 
-
-  render(){
-    console.log("renering matching", window.PAC);
-    var rows = []
-    var rows2 = []
-    var dictPassengers = {}
-    var dictDrivers = {}
-    var drivers = window.PAC.roles.drivers
-    var passengers = window.PAC.roles.passengers
-    var currentUserId = window.PAC.currentUserId
-    var currentDriver;
-
-    rows.push(<h1>Select a car</h1>)
-    for(var i = 0; i < passengers.length; i++) {
-      var listaTemporal = []
-      var passenger = passengers[i];
-      rows.push(<h3> {passenger.name} </h3>)
-
-      for(var j = 0; j < drivers.length; j++) {
-        listaTemporal.push(currentDriver.name)
-        var currentDriver = drivers[j];
-        rows.push(<TextInput key={"driver"+i+"passenger"+j} name={currentDriver.name} />)
-
-      dictPassengers[passenger] = listaTemporal
-      }
-    }
-
-    rows2.push(<h1>Select your passengers</h1>)
-
-    for(var j = 0; j < drivers.length; j++) {
-      var currentDriver = drivers[j];
-      rows2.push(<h3> {currentDriver.name} </h3>)
-
-      for(var i = 0; i < passengers.length; i++) {
-        var passenger = passengers[i];
-        rows2.push(<TextInput key={"driver"+j+"passenger"+i} name={passenger.name} />)
-
-      }
-    }
-
-
-    return (
-            <div className="container">
-              <div className="row">
-                <div className="col-md-12">
-                  { rows }
-                  { rows2 }
-
-                </div>
-              </div>
-            </div>
-
-        );
-  }
-
+			</div>
+		);
+	}
 });
+
 module.exports = Matching;
