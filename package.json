@@ -21,6 +21,10 @@
     "fixed-data-table": "^0.6.0",
     "lodash": "^4.9.0",
     "griddle-react": "^0.4.1",
+<<<<<<< a005fe11abc4fe3a86373d98f4008b18f588f3e1
+=======
+    "lodash": "^4.6.1",
+>>>>>>> T
     "react": "^0.14.8",
     "react-divtable": "^1.1.0",
     "react-dnd": "^2.1.4",

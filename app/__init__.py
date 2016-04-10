@@ -20,6 +20,7 @@ app.config.from_object(__name__)
 def index():
     return send_file('index.html')
 
+
 @app.route('/solve', methods=['GET'])
 def black_box():
     pickers = loads(request.args['pickers'])
