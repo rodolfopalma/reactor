@@ -12,7 +12,7 @@ var Results = React.createClass({
         for (var key in this.state.serverResponse) {
             if (this.state.serverResponse.hasOwnProperty(key)) {
                 var passengers = [];
-                for (var i = 0; i < this.state.serverResponse[key]; i++) {
+                for (var i = 0; i < this.state.serverResponse[key].length; i++) {
                     passengers.push(
                         <li>
                             { this.state.serverResponse[key][i] }

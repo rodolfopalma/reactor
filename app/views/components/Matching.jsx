@@ -21,7 +21,6 @@ var Matching = React.createClass({
 				username: currentInput.dataset.childName,
 				rating: currentInput.value
 			};
-			console.log(currentInput.dataset);
 			if (currentInput.dataset.parentName in requestObject[currentInput.dataset.parentType]) {
 				requestObject[currentInput.dataset.parentType][currentInput.dataset.parentName].push(ratingObject);
 			} else {
@@ -33,7 +32,7 @@ var Matching = React.createClass({
 				data: JSON.stringify(requestObject)
 			}
 		}).then(function(response) {
-			window.PAC.serverResponse = response;
+			window.PAC.serverResponse = response.data;
 			that.history.pushState(null, "results");
 		});
 		ev.preventDefault();
