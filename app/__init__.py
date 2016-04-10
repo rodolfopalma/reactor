@@ -23,10 +23,15 @@ def index():
 
 @app.route('/solve', methods=['GET'])
 def black_box():
-    pickers = loads(request.args['pickers'])
-    choices = loads(request.args['choices'])
+    datos = loads(request.args['data'])
+    print('DATOS: ', datos)
+    print('TIPO: ', type(datos))
 
-    problem = StableMatch(pickers, choices)
+    passengers, drivers = datos['passengers'], datos['drivers']
+    problem = StableMatch(passengers, drivers)
+
+    print(passengers)
+    print(drivers)
     result = problem.solve()
 
     return jsonify(**result)
