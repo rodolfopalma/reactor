@@ -2,6 +2,8 @@ import React from "react";
 import { History } from "react-router";
 // import FB from "fb";
 
+import _ from "lodash";
+
 import FriendRow from "./FriendRow.jsx";
 import DriverFormGroup from "./DriverFormGroup.jsx";
 import PassengersFormGroup from "./PassengersFormGroup.jsx";
@@ -35,7 +37,16 @@ var Begin = React.createClass({
         };
         for (var i = 0; i < inputs.length; i++) {
             if (inputs[i].checked) {
-                window.PAC.roles[inputs[i].name].push(inputs[i].value);
+                var friendObject = _.filter(
+                    this.state.friendsArray,
+                    function(friend) {
+                        return friend.id == inputs[i].value;
+                    }
+                );
+                window.PAC.roles[inputs[i].name].push({
+                    id: inputs[i].value,
+                    name: friendObject[0].name
+                });
             }
         }
         console.log(window.PAC);
