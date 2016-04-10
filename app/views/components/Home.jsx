@@ -23,7 +23,7 @@ var App = React.createClass({
                 </div>
                     <div className="col-md-6">
                   Imagine you are having a trip with a group of friends in more than one car. A couple of people are driving and everyone has to choose the car that they are travelling.<br />
-                  Like every group of people there are some that get along better and would like to travel with them. <br />
+                  Like every group of people there are some that get along better and would like to travel together. <br />
                   This page takes in consideration the preferences of everyone and matches passengers with drivers in the best possible way, allowing you to have a pleasurable trip.
                     </div>
                 </div>
