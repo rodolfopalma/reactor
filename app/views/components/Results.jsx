@@ -32,6 +32,7 @@ var Results = React.createClass({
         return (
             <div className="container">
                 { results }
+				<h3> And another awkward conversation avoided thanks to Reactor! You're welcome. </h3>
             </div>
        )
     }

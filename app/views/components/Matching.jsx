@@ -47,7 +47,7 @@ var Matching = React.createClass({
 			for (var j = 0; j < passengers.length; j++) {
 				subFormGroups.push(
 					<div className="form-group">
-						<label> { passengers[j].name } </label>
+						<label> { passengers[j].name } </label> <br />
 						<input required type="number" data-parent-type="drivers" data-parent-name={ drivers[i].name } data-child-name={ passengers[j].name } />
 					</div>
 				);
@@ -65,7 +65,7 @@ var Matching = React.createClass({
 			for (var j = 0; j < drivers.length; j++) {
 				subFormGroups.push(
 					<div className="form-group">
-						<label> { drivers[j].name } </label>
+						<label> { drivers[j].name } </label> <br />
 						<input required type="number" data-parent-type="passengers" data-parent-name={ passengers[i].name } data-child-name={ drivers[j].name } />
 					</div>
 				);
