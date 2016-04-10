@@ -10,7 +10,7 @@ class Picker:
         for i in range(len(self.preferences)):
             yield self.preferences[i]
         while True:
-            yield len(self.preferences) - 1
+            yield self.preferences[-1]
 
     def set_next_preference(self):
         self.current_preference = next(self.next_preference)
