@@ -53,13 +53,23 @@ class StableMatch:
         self.create_choices()
 
     def create_pickers(self):
-        pickers = self.dic_pickers
-        self.pickers = {name: Picker(name=name, preferences=pickers[name]) for name in pickers}
+        self.pickers = {}
+        for picker_name in self.dic_pickers:
+            preferences = []
+            for preference in range(len(self.dic_pickers[picker_name])):
+                if preference == int(self.dic_pickers[picker_name]['rating']):
+                    preferences.append(self.dic_pickers[picker_name]['username'])
+            self.pickers[picker_name] = Picker(name=picker_name, preferences=preferences)
 
     def create_choices(self):
-        choices = self.dic_choices
-        capacity = len(self.pickers)//len(choices) + 1
-        self.choices = {name: Choice(name=name, preferences=choices[name], capacity=capacity) for name in choices}
+        self.choices = {}
+        capacity = len(self.pickers)//len(self.dic_choices) + 1
+        for choice_name in self.dic_choices:
+            preferences = []
+            for preference in range(len(self.dic_choices[choice_name])):
+                if preference == int(self.dic_choices[choice_name]['rating']):
+                    preferences.append(self.dic_choices[choice_name]['username'])
+            self.choices[choice_name] = Choice(name=choice_name, preferences=preferences, capacity=capacity)
 
     def solved(self):
         for choice_name in self.choices:
