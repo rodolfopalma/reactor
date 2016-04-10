@@ -5,23 +5,36 @@ import TextInput from "./TextInput.jsx";
 
 var Matching  = React.createClass({
   render(){
+    console.log("renering matching", window.PAC);
     var rows = []
+    var rows2 = []
+
     var drivers = window.PAC.roles.drivers
     var passengers = window.PAC.roles.passengers
     var currentUserId = window.PAC.currentUserId
     var currentDriver;
 
-    for(var i = 0; i < drivers.length; i++) {
-      currentDriver = drivers[i];
-      if (currentUserId !== currentDriver.id) {
-      rows.push(<TextInput key={i} name={currentDriver.name} />)
+    rows.push(<h1>Select a car</h1>)
+    for(var i = 0; i < passengers.length; i++) {
+      var passenger = passengers[i];
+      rows.push(<h3> {passenger.name} </h3>)
+
+      for(var j = 0; j < drivers.length; j++) {
+        var currentDriver = drivers[j];
+        rows.push(<TextInput key={"driver"+i+"passenger"+j} name={currentDriver.name} />)
       }
     }
 
-    for(var i = 0; i < passengers.length; i++) {
-      currentDriver = passengers[i];
-      if (currentUserId !== currentDriver.id) {
-      rows.push(<TextInput key={i} name={currentDriver.name} />)
+    rows2.push(<h1>Select your passengers</h1>)
+
+    for(var j = 0; j < drivers.length; j++) {
+      var currentDriver = drivers[j];
+      rows2.push(<h3> {currentDriver.name} </h3>)
+
+      for(var i = 0; i < passengers.length; i++) {
+        var passenger = passengers[i];
+        rows2.push(<TextInput key={"driver"+j+"passenger"+i} name={passenger.name} />)
+
       }
     }
 
@@ -31,6 +44,7 @@ var Matching  = React.createClass({
               <div className="row">
                 <div className="col-md-12">
                   { rows }
+                  { rows2 }
                 </div>
               </div>
             </div>

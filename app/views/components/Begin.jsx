@@ -50,6 +50,7 @@ var Begin = React.createClass({
             }
         }
         console.log(window.PAC);
+        console.log("moving to matching route");
         ev.preventDefault();
         this.history.pushState(null, "matching");
     },
