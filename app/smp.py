@@ -56,9 +56,11 @@ class StableMatch:
         self.pickers = {}
         for picker_name in self.dic_pickers:
             preferences = []
-            for preference in range(len(self.dic_pickers[picker_name])):
-                if preference == int(self.dic_pickers[picker_name]['rating']):
-                    preferences.append(self.dic_pickers[picker_name]['username'])
+            for i in range(len(self.dic_pickers[picker_name])):
+                for preference in self.dic_pickers[picker_name]:
+                    if int(preference['rating']) == i + 1:
+                        preferences.append(preference['username'])
+                        self.dic_pickers[picker_name].remove(preference)
             self.pickers[picker_name] = Picker(name=picker_name, preferences=preferences)
 
     def create_choices(self):
@@ -66,9 +68,11 @@ class StableMatch:
         capacity = len(self.pickers)//len(self.dic_choices) + 1
         for choice_name in self.dic_choices:
             preferences = []
-            for preference in range(len(self.dic_choices[choice_name])):
-                if preference == int(self.dic_choices[choice_name]['rating']):
-                    preferences.append(self.dic_choices[choice_name]['username'])
+            for i in range(len(self.dic_choices[choice_name])):
+                for preference in self.dic_choices[choice_name]:
+                    if int(preference['rating']) == i + 1:
+                        preferences.append(preference['username'])
+                        self.dic_choices[choice_name].remove(preference)
             self.choices[choice_name] = Choice(name=choice_name, preferences=preferences, capacity=capacity)
 
     def solved(self):
@@ -90,14 +94,9 @@ class StableMatch:
         return {name: self.choices[name].current_pickers(self.pickers) for name in self.choices}
 
 if __name__ == '__main__':
-    dic_pickers = {'Thomas': ['Litros', 'Abara'],
-                   'Palma': ['Litros', 'Abara'],
-                   'Ivan': ['Litros', 'Abara'],
-                   'Polo': ['Litros', 'Abara'],
-                   'Fernando': ['Litros', 'Abara'],
-                   'Seto': ['Abara', 'Litros'],
-                   'Jorge': ['Abara', 'Litros']}
-    dic_choices = {'Litros': ['Palma', 'Jorge', ' Thomas', 'Polo', 'Seto', 'Jorge', 'Fernando'],
-                   'Abara': ['Jorge', 'Thomas', 'Ivan', 'Seto', 'Fernando', 'Palma', 'Polo']}
+    dic_pickers = {'Thomas Muñoz': [{'rating': '1', 'username': 'Polo D. Vargas'}],
+                   'Rodolfo Palma Otero': [{'rating': '1', 'username': 'Polo D. Vargas'}]}
+    dic_choices = {'Polo D. Vargas': [{'rating': '1', 'username': 'Rodolfo Palma Otero'},
+                                      {'rating': '2', 'username': 'Thomas Muñoz'}]}
     problem = StableMatch(dic_pickers=dic_pickers, dic_choices=dic_choices)
     print(problem.solve())
