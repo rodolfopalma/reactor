@@ -68,10 +68,10 @@ var Begin = React.createClass({
                 <form ref="form" onSubmit={ this.handleSubmit }>
                     <h2>Tell us who are driving...</h2>
                     { driversRows }
-                    <h2>Tell us who are the passengers...</h2>
+                    <h2>Tell us who the passengers are...</h2>
                     { passengersRows }
-                    <div className="form-group">
-                        <input id="beginSubmitButton" className="btn btn-primary btn-default" type="submit" value="Next" />
+                    <div className="submitButtonContainer form-group">
+                        <input id="beginSubmitButton" className="btn btn-primary btn-lg" type="submit" value="Next" />
                     </div>
                 </form>
             </div>

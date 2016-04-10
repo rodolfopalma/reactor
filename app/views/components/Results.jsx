@@ -1,42 +1,46 @@
 import React from 'react';
-import {Table, Column, Cell} from 'fixed-data-table';
 
-
-export default class Results extends React.Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-            myTableData: [
-                {name: 'Ivan'},
-                {name: 'Thomas'},
-                {name: 'Palma'},
-                {name: 'Polo'}
-            ],
-        };
+var Results = React.createClass({
+    getInitialState() {
+        return {
+            serverResponse: window.PAC.serverResponse
+        }
+    },
+    render() {
+        var results = [];
+        for (var key in this.state.serverResponse) {
+            if (this.state.serverResponse.hasOwnProperty(key)) {
+                var passengers = [];
+                for (var i = 0; i < this.state.serverResponse[key]; i++) {
+                    passengers.push(
+                        <li>
+                            { this.state.serverResponse[key][i] }
+                        </li>
+                    )
+                }
+                results.push(
+                    <div>
+                        <h1> { key } </h1>
+                        <ul>
+                            { passengers }
+                        </ul>
+                    </div>
+                )
+            }
+        }
+        return (
+            <div className="container">
+                { results }                
+            </div>
+       )
     }
+});
 
-  render() {
-    return (
-      <div className="containers">
-      <Table
-
-        rowsCount={this.state.myTableData.length}
-        rowHeight={50}
-        headerHeight={50}
-        width={1000}
-        height={500}>
-        <Column
-          header={<Cell>Name</Cell>}
-          cell={props => (
-              <Cell {...props}>
-                  {this.state.myTableData[props.rowIndex].name}
-              </Cell>
-          )}
-          width={200}
-        />
-      </Table>
-      </div>
-    );
-  }
-};
+module.exports = Results;
+/*
+ * this.state.serverResponse = {
+ *  "driver_1": ["passenger_1", "passegner_2", ...],
+ *  "driver_2": ["passenger_3", "passenger_4", ...],
+ *  ...
+ * }
+ */

@@ -17,10 +17,10 @@ var FBLogin = React.createClass({
     },
     render() {
         return (
-            <div className="container">
-                <p>
+            <div id="fbLoginContainer" className="container">
+                <h3>
                     Help us find your friends by logging into Facebook.
-                </p>
+                </h3>
                 <div id="facebookLoginContainer">
                     <FacebookLogin 
                         appId="988575744557213"

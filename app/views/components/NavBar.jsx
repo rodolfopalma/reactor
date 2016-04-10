@@ -5,7 +5,7 @@ export default class NavBar extends React.Component {
         return (
             <nav className="navbar navbar-default">
                 <div className="container">
-                    <h3>Pick a Car</h3>
+                    <h2>Reactors <small>because awkwards conversations are awkward...</small></h2>
                 </div>
             </nav>
        )
