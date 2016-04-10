@@ -1,5 +1,6 @@
 import React from 'react';
 import {Table, Column, Cell} from 'fixed-data-table';
+import "../assets/css/fixed-data-table.min.css";
 
 export default class Results extends React.Component {
     constructor(props){
