@@ -6,6 +6,7 @@ import Home from "./components/Home.jsx"
 import Begin from "./components/Begin.jsx"
 import Matching from "./components/Matching.jsx"
 import Results from "./components/Results.jsx";
+import Results2 from "./components/Results2.jsx"
 import FBLogin from "./components/FBLogin.jsx";
 
 module.exports = (

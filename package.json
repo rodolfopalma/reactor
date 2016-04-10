@@ -19,7 +19,12 @@
     "fb": "^1.0.2",
     "file-loader": "^0.8.5",
     "fixed-data-table": "^0.6.0",
+<<<<<<< 635509de8bb76743665d3901f2608ee769c366dc
     "lodash": "^4.9.0",
+=======
+    "griddle-react": "^0.4.1",
+    "lodash": "^4.6.1",
+>>>>>>> Ultimo comit de Ivan
     "react": "^0.14.8",
     "react-divtable": "^1.1.0",
     "react-dnd": "^2.1.4",
