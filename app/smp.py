@@ -21,7 +21,7 @@ class Choice:
         self.preferences = preferences
         self.capacity = capacity
 
-    def current_pickers(self, pickers):
+    def current_pickers_number(self, pickers):
         n = 0
         for picker_name in pickers:
             if pickers[picker_name].current_preference == self.name:
@@ -29,7 +29,14 @@ class Choice:
         return n
 
     def good_to_go(self, pickers):
-        return self.current_pickers(pickers) <= self.capacity
+        return self.current_pickers_number(pickers) <= self.capacity
+
+    def current_pickers(self, pickers):
+        current_pickers = []
+        for picker_name in pickers:
+            if pickers[picker_name].current_preference == self.name:
+                current_pickers.append(picker_name)
+        return current_pickers
 
 
 class StableMatch:
@@ -70,7 +77,7 @@ class StableMatch:
                 for picker_name in bottom_preferences:
                     if self.pickers[picker_name].current_preference == problem_choice.name:
                         self.pickers[picker_name].set_next_preference()
-        return {self.pickers[name].name: self.pickers[name].current_preference for name in self.pickers}
+        return {name: self.choices[name].current_pickers(self.pickers) for name in self.choices}
 
 if __name__ == '__main__':
     dic_pickers = {'Thomas': ['Litros', 'Abara'],
