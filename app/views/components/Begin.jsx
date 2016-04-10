@@ -1,6 +1,8 @@
 import React from "react";
 import { History } from "react-router";
+// import FB from "fb";
 
+import FriendRow from "./FriendRow.jsx";
 import DriverFormGroup from "./DriverFormGroup.jsx";
 import PassengersFormGroup from "./PassengersFormGroup.jsx";
 
@@ -8,45 +10,56 @@ var Begin = React.createClass({
     mixins: [ History ],
     getInitialState() {
         return {
-            nOfDrivers: 1,
-            nOfPassengers: 1,
+            friendsArray: []
         }
     },
-    handleAddDriverFormGroup() {
-        this.setState({
-            nOfDrivers: this.state.nOfDrivers + 1,
-            nOfPassengers: this.state.nOfPassengers
-        });
+    componentDidMount() {
+        var that = this;
+        FB.api(
+            '/' + window.PAC.currentUserId + '/friends',
+            'GET',
+            {},
+            function(response) {
+                that.setState({
+                    friendsArray: response.data
+                });
+            }
+        );
     },
-    handleAddPassengerFormGroup() {
-        this.setState({
-            nOfDrivers: this.state.nOfDrivers,
-            nOfPassengers: this.state.nOfPassengers + 1
-        });
-    },
-    handleSubmit() {
+    handleSubmit(ev) {
+        var inputs = this.refs.form.getElementsByTagName("input");
+        var currentCheckbox;
+        window.PAC.roles = {
+            "drivers": [],
+            "passengers": []
+        };
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].checked) {
+                window.PAC.roles[inputs[i].name].push(inputs[i].value);
+            }
+        }
+        console.log(window.PAC);
+        ev.preventDefault();
         this.history.pushState(null, "matching");
     },
     render() {
-        var driversFormGroups = [];
-        var passengersFormGroups = [];
-        for (var i = 0; i < this.state.nOfDrivers; i++) {
-            driversFormGroups.push(<DriverFormGroup n={i} />);
-        }
-        for (var i = 0; i < this.state.nOfPassengers; i++) {
-            passengersFormGroups.push(<PassengersFormGroup n={i} />);
+        var driversRows = [];
+        var passengersRows = [];
+        var currentFriend;
+        for(var i = 0; i < this.state.friendsArray.length; i++) {
+            currentFriend = this.state.friendsArray[i];
+            driversRows.push(<FriendRow key={i} id={currentFriend.id} fieldType="drivers" name={currentFriend.name} />)
+            passengersRows.push(<FriendRow key={i} id={currentFriend.id} fieldType="passengers" name={currentFriend.name} />)
         }
         return (
             <div className="container">
-                <form>
+                <form ref="form" onSubmit={ this.handleSubmit }>
                     <h2>Tell us who are driving...</h2>
-                    {driversFormGroups}
-                    <button className="btn btn-default" onClick={this.handleAddDriverFormGroup}>Add driver</button>
+                    { driversRows }
                     <h2>Tell us who are the passengers...</h2>
-                    {passengersFormGroups}
-                    <button className="btn btn-default" onClick={this.handleAddPassengerFormGroup}>Add passenger</button>
+                    { passengersRows }
                     <div className="form-group">
-                        <input onClick={this.handleSubmit} id="beginSubmitButton" className="btn btn-primary btn-default" type="submit" value="Next" />
+                        <input id="beginSubmitButton" className="btn btn-primary btn-default" type="submit" value="Next" />
                     </div>
                 </form>
             </div>

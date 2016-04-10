@@ -3,8 +3,8 @@ import { History } from "react-router";
 
 var App = React.createClass({
     mixins: [ History ],
-    handleBegin() {
-        this.history.pushState(null, "begin")
+    handleLogin() {
+        this.history.pushState(null, "facebook-login")
     },
 
 	render() {
@@ -30,7 +30,7 @@ var App = React.createClass({
 
                 <div className="row">
                     <div className="col-md-12" id="landingButton">
-                        <button onClick={this.handleBegin} type="button" className="btn btn-primary btn-lg">Begin</button>
+                        <button onClick={this.handleLogin} type="button" className="btn btn-primary btn-lg">Login with FB</button>
                     </div>
                 </div>
 
