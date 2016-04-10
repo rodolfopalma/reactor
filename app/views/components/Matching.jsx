@@ -4,11 +4,14 @@ import TextInput from "./TextInput.jsx";
 
 
 var Matching  = React.createClass({
+
+
   render(){
     console.log("renering matching", window.PAC);
     var rows = []
     var rows2 = []
-
+    var dictPassengers = {}
+    var dictDrivers = {}
     var drivers = window.PAC.roles.drivers
     var passengers = window.PAC.roles.passengers
     var currentUserId = window.PAC.currentUserId
@@ -16,12 +19,16 @@ var Matching  = React.createClass({
 
     rows.push(<h1>Select a car</h1>)
     for(var i = 0; i < passengers.length; i++) {
+      var listaTemporal = []
       var passenger = passengers[i];
       rows.push(<h3> {passenger.name} </h3>)
 
       for(var j = 0; j < drivers.length; j++) {
+        listaTemporal.push(currentDriver.name)
         var currentDriver = drivers[j];
         rows.push(<TextInput key={"driver"+i+"passenger"+j} name={currentDriver.name} />)
+
+      dictPassengers[passenger] = listaTemporal
       }
     }
 
@@ -45,9 +52,11 @@ var Matching  = React.createClass({
                 <div className="col-md-12">
                   { rows }
                   { rows2 }
+
                 </div>
               </div>
             </div>
+
         );
   }
 
