@@ -18,6 +18,7 @@
     "css-loader": "^0.23.1",
     "fb": "^1.0.2",
     "file-loader": "^0.8.5",
+    "fixed-data-table": "^0.6.0",
     "lodash": "^4.6.1",
     "react": "^0.14.8",
     "react-dnd": "^2.1.4",
