@@ -5,7 +5,7 @@ import axios from "axios";
 import TextInput from "./TextInput.jsx";
 
 var Matching = React.createClass({
-	
+	mixins: [ History ],
 	handleSubmit(ev) {
 		var that = this;
         var inputs = this.refs.form.querySelectorAll("input[type='number']");
@@ -15,7 +15,6 @@ var Matching = React.createClass({
 		}
 		var currentInput;
 		var ratingObject;
-		console.log("hola");
 		for (var i = 0; i < inputs.length; i++) {
 			currentInput = inputs[i];
 			ratingObject = {

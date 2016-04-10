@@ -7,6 +7,7 @@ var Results = React.createClass({
         }
     },
     render() {
+        console.log(typeof this.state.serverResponse);
         var results = [];
         for (var key in this.state.serverResponse) {
             if (this.state.serverResponse.hasOwnProperty(key)) {
@@ -30,7 +31,7 @@ var Results = React.createClass({
         }
         return (
             <div className="container">
-                { results }                
+                { results }
             </div>
        )
     }
