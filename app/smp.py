@@ -70,7 +70,6 @@ class StableMatch:
                 for picker_name in bottom_preferences:
                     if self.pickers[picker_name].current_preference == problem_choice.name:
                         self.pickers[picker_name].set_next_preference()
-                        break
         return {self.pickers[name].name: self.pickers[name].current_preference for name in self.pickers}
 
 if __name__ == '__main__':

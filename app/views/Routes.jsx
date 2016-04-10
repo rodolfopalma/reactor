@@ -7,8 +7,6 @@ import Begin from "./components/Begin.jsx"
 import Matching from "./components/Matching.jsx"
 import Results from "./components/Results.jsx";
 
->>>>>>> Ivan
-
 module.exports = (
     <Route path="/" component={Main}>
         <Route path="facebook-login" component={FBLogin} />
