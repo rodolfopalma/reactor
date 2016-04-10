@@ -55,13 +55,11 @@ class StableMatch:
     def create_pickers(self):
         pickers = self.dic_pickers
         self.pickers = {name: Picker(name=name, preferences=pickers[name]) for name in pickers}
-        #self.pickers = {picker.id: picker for picker in pickers}
 
     def create_choices(self):
         choices = self.dic_choices
         capacity = len(self.pickers)//len(choices) + 1
         self.choices = {name: Choice(name=name, preferences=choices[name], capacity=capacity) for name in choices}
-        #self.choices = {choice.id: choice for choice in choices}
 
     def solved(self):
         for choice_name in self.choices:
