@@ -13,7 +13,7 @@ const common = {
 		app: path.join(PATHS.views, "/App.jsx")
 	},
 	resolve: {
-		extensions: [".js", ".jsx"]
+		extensions: ["", ".js", ".jsx"]
 	},
 	output: {
 		path: PATHS.build,
