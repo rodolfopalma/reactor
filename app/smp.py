@@ -65,7 +65,9 @@ class StableMatch:
 
     def create_choices(self):
         self.choices = {}
-        capacity = len(self.pickers)//len(self.dic_choices) + 1
+        a = len(self.pickers)
+        b = len(self.dic_choices)
+        capacity = int(a/b if a%b == 0 else a//b + 1)
         for choice_name in self.dic_choices:
             preferences = []
             for i in range(len(self.dic_choices[choice_name])):
@@ -82,15 +84,15 @@ class StableMatch:
         return True, None
 
     def solve(self):
-        solved = False
+        solved, problem_choice = self.solved()
         while not solved:
-            solved, problem_choice = self.solved()
             if not solved:
-                bottom_preferences = problem_choice.preferences[problem_choice.capacity + 1:]
+                bottom_preferences = problem_choice.preferences[problem_choice.capacity:]
                 bottom_preferences.reverse()
                 for picker_name in bottom_preferences:
                     if self.pickers[picker_name].current_preference == problem_choice.name:
                         self.pickers[picker_name].set_next_preference()
+            solved, problem_choice = self.solved()
         return {name: self.choices[name].current_pickers(self.pickers) for name in self.choices}
 
 if __name__ == '__main__':
