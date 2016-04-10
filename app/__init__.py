@@ -33,7 +33,7 @@ def black_box():
     print(passengers)
     print(drivers)
     result = problem.solve()
-
+    print(result)
     return jsonify(**result)
 
 if __name__ == '__main__':
