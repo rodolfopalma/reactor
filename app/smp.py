@@ -4,13 +4,11 @@ class Picker:
         self.name = name
         self.preferences = preferences
         self.next_preference = self.next_preference()
-        self.current_preference = next(self.next_preference)
+        self.current_preference = preferences[0]
 
     def next_preference(self):
         for i in range(len(self.preferences)):
             yield self.preferences[i]
-        while True:
-            yield self.preferences[-1]
 
     def set_next_preference(self):
         self.current_preference = next(self.next_preference)
@@ -92,6 +90,7 @@ class StableMatch:
                 for picker_name in bottom_preferences:
                     if self.pickers[picker_name].current_preference == problem_choice.name:
                         self.pickers[picker_name].set_next_preference()
+                        break
             solved, problem_choice = self.solved()
         return {name: self.choices[name].current_pickers(self.pickers) for name in self.choices}
 
