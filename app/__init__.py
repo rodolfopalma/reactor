@@ -24,16 +24,10 @@ def index():
 @app.route('/solve', methods=['GET'])
 def black_box():
     datos = loads(request.args['data'])
-    print('DATOS: ', datos)
-    print('TIPO: ', type(datos))
-
     passengers, drivers = datos['passengers'], datos['drivers']
     problem = StableMatch(passengers, drivers)
-
-    print(passengers)
-    print(drivers)
     result = problem.solve()
-    print(result)
+
     return jsonify(**result)
 
 if __name__ == '__main__':
